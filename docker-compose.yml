@@ -1,0 +1,19 @@
+# docker-compose up --build
+# http://localhost:8080
+version: '3.9'
+
+services:
+  vue_app:
+    build:
+      context: .  # Use the current directory (where Dockerfile is)
+      dockerfile: Dockerfile  # Use the specified Dockerfile 
+    container_name: crm
+    ports:
+      - "8080:3000" # Vite typically uses port 3000 for development
+    volumes:
+      - ./src:/app/src  # Assuming src folder is in the same directory as package.json
+      - ./public:/app/public  # Assuming public folder is in the same directory as package.json
+    #  - .:/app   Mount the root directory (where package.json is) into the container
+    working_dir: /app
+
+
